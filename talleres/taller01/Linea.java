@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 public class Linea extends PuntoLinea {
     private PuntoLinea puntoInicial;
     private PuntoLinea puntoFinal;
@@ -13,10 +15,10 @@ public class Linea extends PuntoLinea {
         this.puntos[0] = pi;
     }
     public int calcularDifY(){
-        return (getPFinal().getCoordenadaY() - getPInicial().getCoordenadaY());
+        return Math.abs((getPFinal().getCoordenadaY() - getPInicial().getCoordenadaY()));
     }
     public int calcularDifX(){
-        return (getPFinal().getCoordenadaX() - getPInicial().getCoordenadaX());
+        return Math.abs((getPFinal().getCoordenadaX() - getPInicial().getCoordenadaX()));
     }
     public PuntoLinea getPFinal(){
         return this.puntoFinal;
@@ -71,8 +73,8 @@ public class Linea extends PuntoLinea {
         return result;
     }
     public static void main (String[]args){
-        PuntoLinea pi = new PuntoLinea(1,4);
-        PuntoLinea pf = new PuntoLinea(41,24);
+        PuntoLinea pi = new PuntoLinea(1, 3);
+        PuntoLinea pf = new PuntoLinea(31,15);
         Linea linea = new Linea(pi, pf);
         linea.getPuntos();
         for (int i = 0; i < linea.getLista().length - 1; i++){
