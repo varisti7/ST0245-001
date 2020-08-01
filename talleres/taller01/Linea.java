@@ -11,14 +11,14 @@ public class Linea extends PuntoLinea {
         this.puntoFinal = pf;
         this.puntoInicial = pi;
         calcMcd();
-        this.puntos = new PuntoLinea[calcularDifX()+ calcularDifY() + 2];
+        this.puntos = new PuntoLinea[Math.abs(calcularDifX())+ Math.abs(calcularDifY())+2];
         this.puntos[0] = pi;
     }
     public int calcularDifY(){
-        return Math.abs((getPFinal().getCoordenadaY() - getPInicial().getCoordenadaY()));
+        return (getPFinal().getCoordenadaY() - getPInicial().getCoordenadaY());
     }
     public int calcularDifX(){
-        return Math.abs((getPFinal().getCoordenadaX() - getPInicial().getCoordenadaX()));
+        return (getPFinal().getCoordenadaX() - getPInicial().getCoordenadaX());
     }
     public PuntoLinea getPFinal(){
         return this.puntoFinal;
@@ -38,20 +38,47 @@ public class Linea extends PuntoLinea {
         int i = 0;
         
         while(i < getMcd()){
-            int xi = getLista()[contador - 1].getCoordenadaX() + 1;
-            int yi = getLista()[contador - 1].getCoordenadaY();
-            for (int j = xi; j < xi + x; ++j){
+            int xi = 0, yi = 0;
+            if (calcularDifX() > 0){
+                xi = getLista()[contador - 1].getCoordenadaX() + 1;
+                yi = getLista()[contador - 1].getCoordenadaY();
+                for (int j = xi; j < xi + x; ++j){
                     PuntoLinea p = new PuntoLinea(j, yi);
                     getLista()[contador] = p;
                     contador++;
+                }
+            }else if (calcularDifX() < 0){
+                xi = getLista()[contador - 1].getCoordenadaX() - 1;
+                yi = getLista()[contador - 1].getCoordenadaY();
+                for (int j = xi; j > xi + x; --j){
+                    PuntoLinea p = new PuntoLinea(j, yi);
+                    getLista()[contador] = p;
+                    contador++;
+                }
             }
-            xi = getLista()[contador - 1].getCoordenadaX();
-            yi = getLista()[contador - 1].getCoordenadaY() + 1;
-            for (int k = yi; k < yi + y; ++k){
+            
+            if (calcularDifY() > 0){
+                xi = getLista()[contador - 1].getCoordenadaX();
+                yi = getLista()[contador - 1].getCoordenadaY() + 1;
+                for (int k = yi; k < yi + y; ++k){
                     PuntoLinea p = new PuntoLinea(xi, k);
                     getLista()[contador] = p;
                     contador++;
+                }
+            }else if (calcularDifY() < 0){
+                xi = getLista()[contador - 1].getCoordenadaX();
+                yi = getLista()[contador - 1].getCoordenadaY() - 1;
+                for (int k = yi; k > yi + y; --k){
+                    PuntoLinea p = new PuntoLinea(xi, k);
+                    getLista()[contador] = p;
+                    contador++;
+                }
             }
+            // for (int k = yi; k < yi + y; ++k){
+            //         PuntoLinea p = new PuntoLinea(xi, k);
+            //         getLista()[contador] = p;
+            //         contador++;
+            // }
             i++;
         }
         getLista()[contador - 1] = getPFinal();
@@ -70,12 +97,13 @@ public class Linea extends PuntoLinea {
         int result = 1;
         if (p % q == 0) result = q;
         else  result = mcd(q, p % q);
-        return result;
+        return Math.abs(result);
     }
     public static void main (String[]args){
         PuntoLinea pi = new PuntoLinea(1, 3);
-        PuntoLinea pf = new PuntoLinea(31,15);
+        PuntoLinea pf = new PuntoLinea(-3,5);
         Linea linea = new Linea(pi, pf);
+        System.out.println(linea.getMcd()+" " +linea.calcularDifX()+" "+linea.calcularDifY());
         linea.getPuntos();
         for (int i = 0; i < linea.getLista().length - 1; i++){
             System.out.println(linea.getLista()[i].toString());
