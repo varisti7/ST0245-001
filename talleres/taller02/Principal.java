@@ -36,7 +36,7 @@ public class Principal{
         }
     }
     public static void inventario(){
-        Inventario i1 = new Inventario(10);
+        Inventario i1 = new Inventario();
         Scanner scan = new Scanner(System.in);
         System.out.println("Ingrese los pesos que desea probar en el siguiente formato: numero1-numero2-....-numeroN");
         String[] accesorios = scan.next().split("-");

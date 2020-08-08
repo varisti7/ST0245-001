@@ -32,10 +32,4 @@ public class Habitacion {
             }
             return mcd(grande, pequeño);
         }
-
-    public static void main (String[]args){
-        Habitacion h1 = new Habitacion(12312, 256);
-        int tamañoBaldosa = h1.getMcd(h1.getAncho(), h1.getLargo());
-        System.out.println(tamañoBaldosa);
-    }
 }
