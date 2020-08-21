@@ -28,37 +28,40 @@ def arrayMax_aux(arr, i, max):
 def groupSum_aux(start, lista, target):
     if start == len(lista):
         return target == 0
-    return groupSum_aux(start + 1, lista, target - lista[start]) or groupSum_aux(start + 1, lista, target)
+    else:
+        esta = groupSum_aux(start + 1, lista, target - lista[start])
+        noesta = groupSum_aux(start + 1, lista, target)
+        return esta or noesta
 
 def groupSum(lista, target):
    return groupSum_aux(0, lista, target)
 
-# #----------------------------Fibonacci---------------------------------#
-
-# def fib_r(n):                             #Fibonacci recursivo
 
 lengthArray = []
 timeArray = []
-for x in range (1,22):
+for x in range (8 ,28):
     arr = array_generator(x)
     num = random.choice(range(150))
     lengthArray.append(x)
     t1 = time.time()
-    print(groupSum_aux(0, arr, num))
+    groupSum_aux(0, arr, num)
     t2 = time.time()
+    print((t2-t1)*1000)
     timeArray.append(t2 - t1)
-plt.plot(lengthArray, timeArray)
+plt.plot(lengthArray, timeArray, 'ro')
 plt.show()
 
-lengthArray = []
-timeArray = []
-for x in range (100,1101,50):
+
+lengthArray2 = []
+timeArray2 = []
+for x in range (1000,10001,500):
     arr = array_generator(x)
-    lengthArray.append(len(arr))
+    lengthArray2.append(len(arr))
     t1 = time.time()
-    print(arrayMax_aux(arr, 0, 0))
+    arrayMax_aux(arr, 0, 0)
     t2 = time.time()
-    timeArray.append(t2 - t1)
-plt.plot(lengthArray, timeArray)
+    print((t2-t1)*1000)
+    timeArray2.append(t2 - t1)
+plt.plot(lengthArray2, timeArray2, 'bs')
 plt.show()
 
