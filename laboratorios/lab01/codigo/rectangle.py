@@ -2,6 +2,10 @@ import time, string, random
 import matplotlib.pyplot as plt
 
 def rectangle(size2n):
+    """
+    This agorithm recieves an integer as the number of rectangles of 2xn and calculates of how
+    many ways it could be filled with 2x1 rectangles.
+    """
     if size2n == 1 or size2n == 2: # C1
         return size2n
     else:
@@ -14,6 +18,10 @@ def rectangle(size2n):
 """
 
 def plotTimes():
+    """
+    This function plot's the rectangle algorithm. The x label as the number (from 20-40) and the y label
+    as the time required to solve it.
+    """
     timeArray = []
     lengthArray = []
     for x in range(20,40):

@@ -2,6 +2,10 @@ import time, string, random
 import matplotlib.pyplot as plt
 
 def largestCommonSequence(string1, string2):
+    """
+    This algorithm takes two strings as input and compares the longest common sequence between 
+    both of them; the largest common sequence doesn't have to be strictly in order.
+    """
     if len(string1) == 0 or len(string2) == 0: # C1
         return 0
     elif string1[-1] == string2[-1]: # C2 * min(n, m)
@@ -19,6 +23,10 @@ def largestCommonSequence(string1, string2):
 """
 
 def ranStrings(length):
+    """
+    This function generates two random strings from the alphabet
+    in upper case and returns them.
+    """
     alphabet = list(string.ascii_uppercase)
     newString1 = ""
     for x in range(length):
@@ -29,6 +37,10 @@ def ranStrings(length):
     return newString1, newString2
 
 def plotTimes():
+    """
+    This function plot's the largestCommonSequence algorithm. The x label as the length of 
+    the strings generated to compare and the y label as the time required to solve it.
+    """
     timeArray = []
     lengthArray = []
     for x in range(1, 16):
