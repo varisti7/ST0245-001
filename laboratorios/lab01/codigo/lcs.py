@@ -10,7 +10,7 @@ def largestCommonSequence(string1, string2):
         return 0
     elif string1[-1] == string2[-1]: 
         return 1 + largestCommonSequence(string1[:-1], string2[:-1])
-    else: # C3 * T(n -1) + T(n-1)
+    else: # C3 + T(n -1) + T(n-1)
         return max(largestCommonSequence(string1[:-1], string2), largestCommonSequence(string1, string2[:-1]))
 
 """
