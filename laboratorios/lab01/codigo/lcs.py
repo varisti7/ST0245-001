@@ -8,9 +8,9 @@ def largestCommonSequence(string1, string2):
     """
     if len(string1) == 0 or len(string2) == 0: # C1
         return 0
-    elif string1[-1] == string2[-1]: # C2 * min(n, m)
+    elif string1[-1] == string2[-1]: 
         return 1 + largestCommonSequence(string1[:-1], string2[:-1])
-    else: # C3 * max(n, m)
+    else: # C3 * T(n -1) + T(n-1)
         return max(largestCommonSequence(string1[:-1], string2), largestCommonSequence(string1, string2[:-1]))
 
 """
