@@ -1,5 +1,3 @@
-from queue import LifoQueue 
-  
 class Node:
     def __init__(self, data):
         self.nextN = None
