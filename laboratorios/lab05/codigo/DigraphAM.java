@@ -15,6 +15,10 @@ public class DigraphAM extends Graph
    public DigraphAM(int vertices) {
         super(vertices);
         grafoAM = new int[size][size];
+        for(int i=1; i<size; i++){
+          grafoAM[i][0] = i;
+          grafoAM[0][i] = i;
+      }
    }
    
     /**
@@ -33,7 +37,7 @@ public class DigraphAM extends Graph
        ArrayList<Integer> sucesores = new ArrayList<Integer>();
        for(int i = 0;i < size;i++){           
            if(grafoAM[vertice][i] != 0){
-             sucesores.add(i);
+             sucesores.add(grafoAM[0][i]);
            }
        }
        return sucesores;
